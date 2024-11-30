@@ -33,8 +33,10 @@ pip install -e ".[notebooks]"
 ```
 
 Please see [INSTALL.md](https://github.com/facebookresearch/sam2/blob/main/INSTALL.md) from the original SAM 2 repository for FAQs on potential issues and solutions.
+
+Install other requirements:
 ```
-pip install matplotlib==3.7 tikzplotlib jpeg4py opencv-python lmdb pandas scipy
+pip install matplotlib==3.7 tikzplotlib jpeg4py opencv-python lmdb pandas scipy loguru
 ```
 
 #### SAM 2.1 Checkpoint Download
@@ -77,7 +79,7 @@ python scripts/main_inference.py
 
 To run the demo with your custom video or frame directory, use the following examples:
 
-**Note:** The `.txt` file contains a single line with the bounding box of the first frame in `xywh` format.
+**Note:** The `.txt` file contains a single line with the bounding box of the first frame in `x,y,w,h` format.
 
 ### Input is Video File
 
@@ -87,8 +89,14 @@ python scripts/demo.py --video_path <your_video.mp4> --txt_path <path_to_first_f
 
 ### Input is Frame Folder
 ```
+# Only JPG images are supported
 python scripts/demo.py --video_path <your_frame_directory> --txt_path <path_to_first_frame_bbox.txt>
 ```
+
+## FAQs
+**Question 1:** Do SAMURAI need training? [issue 34](https://github.com/yangchris11/samurai/issues/34)
+
+**Answer 1:** Unlike real-life samurai, the proposed samurai do not require additional training. It is a zero-shot method, we directly use the weights from SAM 2.1 to conduct VOT experiments. Kalman filter is used to estimate the current and future state (bounding box location and scale in our case) of a moving object based on measurements over time, it is a common approach that had been adapt in the field of tracking for a long time which does not requires any training. Please refer to code for more detail.
 
 ## Acknowledgment
 
