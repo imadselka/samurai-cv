@@ -21,6 +21,8 @@ This repository is the official implementation of SAMURAI: Adapting Segment Anyt
 
 https://github.com/user-attachments/assets/9d368ca7-2e9b-4fed-9da0-d2efbf620d88
 
+All rights are reserved to the copyright owners (TM & © Universal (2019)). This clip is not intended for commercial use and is solely for academic demonstration in a research paper. Original source can be found [here](https://www.youtube.com/watch?v=cwUzUzpG8aM&t=4s).
+
 ## Getting Started
 
 #### SAMURAI Installation 
@@ -94,9 +96,18 @@ python scripts/demo.py --video_path <your_frame_directory> --txt_path <path_to_f
 ```
 
 ## FAQs
-**Question 1:** Do SAMURAI need training? [issue 34](https://github.com/yangchris11/samurai/issues/34)
+**Question 1:** Does SAMURAI need training? [issue 34](https://github.com/yangchris11/samurai/issues/34)
 
 **Answer 1:** Unlike real-life samurai, the proposed samurai do not require additional training. It is a zero-shot method, we directly use the weights from SAM 2.1 to conduct VOT experiments. Kalman filter is used to estimate the current and future state (bounding box location and scale in our case) of a moving object based on measurements over time, it is a common approach that had been adapt in the field of tracking for a long time which does not requires any training. Please refer to code for more detail.
+
+**Question 2:** Does SAMURAI support streaming input (e.g. webcam)?
+
+**Answer 2:** Not yet. The existing code doesn't support live/streaming video as we inherit most of the codebase from the amazing SAM 2. Some discussion that you might be interested in: facebookresearch/sam2#90, facebookresearch/sam2#388 (comment).
+
+**Question 3:** How to use SAMURAI in longer video?
+
+**Answer 3:** See the discussion from sam2 https://github.com/facebookresearch/sam2/issues/264.
+
 
 ## Acknowledgment
 
